@@ -1,0 +1,77 @@
+#!/bin/bash
+
+echo ''
+echo -e '\t███████╗██╗   ██╗███████╗██╗  ██╗'
+echo -e '\t██╔════╝██║   ██║██╔════╝██║  ██║'
+echo -e '\t█████╗  ██║   ██║███████╗███████║ (by sha-16)'
+echo -e '\t██╔══╝  ██║   ██║╚════██║██╔══██║'
+echo -e '\t██║     ╚██████╔╝███████║██║  ██║'
+echo -e '\t╚═╝      ╚═════╝ ╚══════╝╚═╝  ╚═╝'
+
+
+###########################################################################################
+
+# Exit control
+function ctrl_c(){
+	echo -e "\nExiting...!"
+	tput cnorm 
+	exit 1
+}
+trap ctrl_c INT 
+
+###########################################################################################
+
+# Check status code [ANY STATUS CODE EXCEPT 400-499]
+function check_and_show(){
+	status_code=$1
+		
+	if [ ! $status_code -ge 400 -o ! $status_code -le 499 ]; then 
+		echo "$url/$word -> [Status: $status_code]"
+	fi;	
+}
+
+###########################################################################################
+
+# Checking if the target is up
+function check_target(){
+	echo -e -n "\n~ Checking target: "
+	timeout 4 bash -c "curl $1" &>/dev/null 
+
+	if [ $? -ne 0 ]; then 
+		echo "Wrong!"
+		echo -e "\n[!] Error: check if your target is up..."
+		exit 2
+	fi
+}
+
+###########################################################################################
+
+# Main program
+if [ $# -eq 2 ]; then 
+
+	url=$1
+	check_target $url
+	echo "Good!"
+
+	
+	dictionary=$2
+
+	echo -e "\n[+] Target: $url"
+	echo -e "[+] Dictionary: $dictionary\n"
+
+	for word in $(cat $dictionary); do
+
+		status_code=$(curl "$url/$word" -I -s  | grep HTTP| cut -d " " -f 2 &);
+		check_and_show $status_code;
+		 
+	done; wait
+
+	echo -e "\n[~] Finished!"
+	exit 0
+		
+else 
+	echo -e "\n[~] USE: $0 <url> <dictionary>"
+	echo -e "\n\t\$$0 http://url.net /opt/dictionary.txt"
+fi
+
+###########################################################################################
