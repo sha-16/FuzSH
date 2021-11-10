@@ -1,6 +1,11 @@
 # FuzSH
 Este es un fuzzer que me he creado en Bash; es medianamente rápido y preciso... Les invito a probarlo!
 
+## Motivos de la creación
+* Crear un programa con hilos en bash.
+* Practicar bash.
+* Hacer un fuzzer alternativo y sencilla para la comunidad. 
+
 ## Requerimientos
 Tener instalada la utilidad ```curl```.
 ```bash 
