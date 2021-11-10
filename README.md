@@ -2,7 +2,10 @@
 Este es un fuzzer que me he creado en Bash; es medianamente rápido y preciso... Les invito a probarlo!
 
 ## Requerimientos
-Tener instalada la utilidad curl
+Tener instalada la utilidad ```curl```.
+```bash 
+$ sudo apt install curl -y
+```
 
 ## Instalación y uso 
 ```bash
