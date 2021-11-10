@@ -71,7 +71,11 @@ if [ $# -eq 2 ]; then
 		
 else 
 	echo -e "\n[~] USE: $0 <url> <dictionary>"
-	echo -e "\n\t\$ $0 http://url.net /opt/dictionary.txt\n"
+	echo -e "\n\t\$ $0 http://url.net /opt/dictionary.txt"
+	echo -e "\t\$ $0 http://sha-16.hacker /opt/not-metaploit.txt"
+	echo -e "\t\$ $0 http://shelldredd.iloveyou /opt/not-metaploit.txt"
+	echo -e "\n~ Hello sir..."
+
 fi
 
 ###########################################################################################
