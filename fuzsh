@@ -71,7 +71,7 @@ if [ $# -eq 2 ]; then
 		
 else 
 	echo -e "\n[~] USE: $0 <url> <dictionary>"
-	echo -e "\n\t\$$0 http://url.net /opt/dictionary.txt"
+	echo -e "\n\t\$ $0 http://url.net /opt/dictionary.txt\n"
 fi
 
 ###########################################################################################
