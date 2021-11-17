@@ -1,12 +1,13 @@
 #!/bin/bash
 
 echo ''
-echo -e '\t███████╗██╗   ██╗███████╗██╗  ██╗'
-echo -e '\t██╔════╝██║   ██║██╔════╝██║  ██║'
-echo -e '\t█████╗  ██║   ██║███████╗███████║ (by sha-16)'
-echo -e '\t██╔══╝  ██║   ██║╚════██║██╔══██║'
-echo -e '\t██║     ╚██████╔╝███████║██║  ██║'
-echo -e '\t╚═╝      ╚═════╝ ╚══════╝╚═╝  ╚═╝'
+echo '███████╗██╗   ██╗███████╗███████╗██╗  ██╗'
+echo '██╔════╝██║   ██║╚══███╔╝██╔════╝██║  ██║'
+echo '█████╗  ██║   ██║  ███╔╝ ███████╗███████║ by sha-16'
+echo '██╔══╝  ██║   ██║ ███╔╝  ╚════██║██╔══██║'
+echo '██║     ╚██████╔╝███████╗███████║██║  ██║'
+echo '╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝'
+                                         
 
 
 ###########################################################################################
@@ -61,7 +62,7 @@ if [ $# -eq 2 ]; then
 
 	for word in $(cat $dictionary); do
 
-		status_code=$(curl "$url/$word" -I -s  | grep HTTP| cut -d " " -f 2 &);
+		status_code=$(curl -s --max-time 3 "$url/$word" -I | grep HTTP| cut -d " " -f 2 2>/dev/null &);
 		check_and_show $status_code;
 		 
 	done; wait
@@ -72,9 +73,9 @@ if [ $# -eq 2 ]; then
 else 
 	echo -e "\n[~] USE: $0 <url> <dictionary>"
 	echo -e "\n\t\$ $0 http://url.net /opt/dictionary.txt"
-	echo -e "\t\$ $0 http://sha-16.hacker /opt/not-metaploit.txt"
-	echo -e "\t\$ $0 http://shelldredd.iloveyou /opt/not-metaploit.txt"
-	echo -e "\n~ Hello sir..."
+	echo -e "\t\$ $0 http://10.20.5.108 /opt/not-metaploit.txt"
+	echo -e "\t\$ $0 http://domain.com /opt/not-metaploit.txt"
+	echo -e "\n~ Happy Hacking...!"
 
 fi
 
